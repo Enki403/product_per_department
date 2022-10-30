@@ -1,14 +1,9 @@
 package com.product_per_department.product_per_department.model;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -16,35 +11,34 @@ import javax.persistence.Table;
 public class Categoria {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idCategoria;
-    private String nombreCategoria;
-    private String descripcionCategoria;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id_categoria;
+    private String nombre_categoria;
+    private String descripcion_categoria;
 
-    @OneToMany(mappedBy = "categoria", fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)
-    private List<Producto> productos;
+    public Categoria(){}
 
     public Categoria(String nombreCategoria, String descripcionCategoria) {
-        this.nombreCategoria = nombreCategoria;
-        this.descripcionCategoria = descripcionCategoria;
+        this.nombre_categoria = nombreCategoria;
+        this.descripcion_categoria = descripcionCategoria;
     }
     
-    public int getIdCategoria() {
-        return idCategoria;
+    public long getIdCategoria() {
+        return id_categoria;
     }
-    public void setIdCategoria(int idCategoria) {
-        this.idCategoria = idCategoria;
+    public void setIdCategoria(long idCategoria) {
+        this.id_categoria = idCategoria;
     }
     public String getNombreCategoria() {
-        return nombreCategoria;
+        return nombre_categoria;
     }
     public void setNombreCategoria(String nombreCategoria) {
-        this.nombreCategoria = nombreCategoria;
+        this.nombre_categoria = nombreCategoria;
     }
     public String getDescripcionCategoria() {
-        return descripcionCategoria;
+        return descripcion_categoria;
     }
     public void setDescripcionCategoria(String descripcionCategoria) {
-        this.descripcionCategoria = descripcionCategoria;
+        this.descripcion_categoria = descripcionCategoria;
     }
 }

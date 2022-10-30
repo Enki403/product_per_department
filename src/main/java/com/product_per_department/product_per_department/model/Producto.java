@@ -8,42 +8,41 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.CascadeType;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table (name = "tbl_producto")
 public class Producto {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idProducto;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id_producto;
     private int cantidad;
-    private int precio;
+    private double precio;
     
-    private String nombreProducto;
-    private String descripcionProducto;
-    private String imgDir;
+    private String nombre_producto;
+    private String descripcion_producto;
+    private String img_dir;
 
     @ManyToOne
-    @JoinColumn(name = "idCategoria")
+    @JoinColumn(name = "id_categoria")
     @JsonBackReference
     private Categoria categoria;
 
     public Producto(){}
 
-    public Producto(int cantidad, int precio, String nombreProducto, String descripcionProducto, String imgDir) {
+    public Producto(int cantidad, double precio, String nombreProducto, String descripcionProducto, String imgDir, Categoria categoria) {
         this.cantidad = cantidad;
         this.precio = precio;
-        this.nombreProducto = nombreProducto;
-        this.descripcionProducto = descripcionProducto;
-        this.imgDir = imgDir;
+        this.nombre_producto = nombreProducto;
+        this.descripcion_producto = descripcionProducto;
+        this.img_dir = imgDir;
+        this.categoria = categoria;
     }
-    public int getIdProducto() {
-        return idProducto;
+    public long getIdProducto() {
+        return id_producto;
     }
-    public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
+    public void setIdProducto(long idProducto) {
+        this.id_producto = idProducto;
     }
     public int getCantidad() {
         return cantidad;
@@ -51,28 +50,28 @@ public class Producto {
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
-    public int getPrecio() {
+    public double getPrecio() {
         return precio;
     }
-    public void setPrecio(int precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
     public String getNombreProducto() {
-        return nombreProducto;
+        return nombre_producto;
     }
     public void setNombreProducto(String nombreProducto) {
-        this.nombreProducto = nombreProducto;
+        this.nombre_producto = nombreProducto;
     }
     public String getDescripcionProducto() {
-        return descripcionProducto;
+        return descripcion_producto;
     }
     public void setDescripcionProducto(String descripcionProducto) {
-        this.descripcionProducto = descripcionProducto;
+        this.descripcion_producto = descripcionProducto;
     }
     public String getImgDir() {
-        return imgDir;
+        return img_dir;
     }
     public void setImgDir(String imgDir) {
-        this.imgDir = imgDir;
+        this.img_dir = imgDir;
     }
 }

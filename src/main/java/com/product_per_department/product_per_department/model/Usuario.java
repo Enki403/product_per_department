@@ -11,59 +11,71 @@ import javax.persistence.Table;
 public class Usuario {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idUsuario;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id_usuario;
     private String username;
-    private String nombreUsuario;
+    private String nombre_usuario;
     private String apellido;
     private String email;
-    private String password;
+    private String contrasenia;
 
     public Usuario(){}
 
-    public Usuario(String username, String nombreUsuario, String apellido, String email,
-            String password) {
+    public Usuario(String username, String nombre_usuario, String apellido, String email, String contrasenia) {
         this.username = username;
-        this.nombreUsuario = nombreUsuario;
+        this.nombre_usuario = nombre_usuario;
         this.apellido = apellido;
         this.email = email;
-        this.password = password;
+        this.contrasenia = contrasenia;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public long getId_usuario() {
+        return id_usuario;
     }
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+
+    public void setId_usuario(long id_usuario) {
+        this.id_usuario = id_usuario;
     }
+
     public String getUsername() {
         return username;
     }
+
     public void setUsername(String username) {
         this.username = username;
     }
-    public String getNombreUsuario() {
-        return nombreUsuario;
+
+    public String getNombre_usuario() {
+        return nombre_usuario;
     }
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
+
+    public void setNombre_usuario(String nombre_usuario) {
+        this.nombre_usuario = nombre_usuario;
     }
+
     public String getApellido() {
         return apellido;
     }
+
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
+
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
-    public String getPassword() {
-        return password;
+
+    public String getContrasenia() {
+        return contrasenia;
     }
-    public void setPassword(String password) {
-        this.password = password;
+
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
+
+    
 }

@@ -56,7 +56,7 @@ Debe diseñar un sitio web que contenga los siguientes módulos:
 <section>
 
 ## Base de Datos
-Se utiliza MySQL como SGBD hosteado gratiuitamente en [Free MySQL Hosting](https://www.freemysqlhosting.net/) por lo que se obtiene como resultado el siguiente _ConnectionString_: `jdbc:mysql://sql10.freemysqlhosting.net:3306/?user=sql10530136`
+Se utiliza MySQL como SGBD hosteado gratiuitamente en [Free MySQL Hosting](https://www.freemysqlhosting.net/) por lo que se obtiene como resultado el siguiente _ConnectionString_: `jdbc:mysql://sql10.freemysqlhosting.net:3306/sql10530136`
 
 ### DDL de la BD
 La base de datos fue definida de la siguiente forma:
@@ -65,35 +65,35 @@ La base de datos fue definida de la siguiente forma:
   
 ```
 CREATE TABLE IF NOT EXISTS tbl_usuario(
-	idUsuario INT NOT NULL COMMENT "Id del usuario",
+	  id_usuario INT NOT NULL AUTO_INCREMENT COMMENT "Id del usuario",
     username VARCHAR(50) NOT NULL COMMENT "Nombre de usuario unico",
-    nombreUsuario VARCHAR(50) COMMENT "Nombre del usuario",
+    nombre_usuario VARCHAR(50) COMMENT "Nombre del usuario",
     apellido VARCHAR(50) COMMENT "Apellido del usuario",
     email VARCHAR(50) NOT NULL COMMENT "correo del usuario",
-    pass VARCHAR(50) NOT NULL COMMENT "Contrasenia del usuario, encriptada",
-    CONSTRAINT tblUsuario_PK PRIMARY KEY (idUsuario),
-    CONSTRAINT tblUsuario_UK UNIQUE (username)
+    contrasenia VARCHAR(50) NOT NULL COMMENT "Contrasenia del usuario, encriptada",
+    CONSTRAINT tbl_usuario_pk PRIMARY KEY (id_usuario),
+    CONSTRAINT tbl_usuario_uk UNIQUE (username)
 )COMMENT "Tabla de usuarios";
 
 CREATE TABLE IF NOT EXISTS tbl_categoria(
-	idCategoria INT NOT NULL COMMENT "Id de la categoria",
-    nombreCategoria VARCHAR(50) NOT NULL COMMENT "Nombre de la categoria",
-    descripcionCategoria VARCHAR(250) NOT NULL COMMENT "Descripcion de la categoria",
-    CONSTRAINT tblCategoria_PK PRIMARY KEY (idCategoria)
+	  id_categoria INT NOT NULL AUTO_INCREMENT COMMENT "Id de la categoria",
+    nombre_categoria VARCHAR(50) NOT NULL COMMENT "Nombre de la categoria",
+    descripcion_categoria VARCHAR(250) NOT NULL COMMENT "Descripcion de la categoria",
+    CONSTRAINT tbl_categoria_pk PRIMARY KEY (id_categoria)
 )COMMENT "Tabla de categorias";
 
 CREATE TABLE IF NOT EXISTS tbl_producto(
-	idProducto INT NOT NULL COMMENT "Id del usuario",
-	idCategoria INT COMMENT "Id de la categoria a la que pertenece",
+    id_producto INT NOT NULL AUTO_INCREMENT COMMENT "Id del usuario",
+    id_categoria INT NOT NULL COMMENT "Id de la categoria a la que pertenece",
     cantidad INT NOT NULL COMMENT "Cantidad en stock del producto",
-    precio INT NOT NULL COMMENT "Precio del producto",
-    nombreProducto VARCHAR(50) NOT NULL COMMENT "Nombre del producto",
-    imgDir VARCHAR(150) NOT NULL COMMENT "direccion de la imagen",
-    descripcionProducto VARCHAR(250) NOT NULL COMMENT "Descripcion del producto",
-    CONSTRAINT tblProducto_PK PRIMARY KEY (idProducto),
+    precio DOUBLE  NOT NULL COMMENT "Precio del producto",
+    nombre_producto VARCHAR(50) NOT NULL COMMENT "Nombre del producto",
+    img_dir VARCHAR(150) NOT NULL COMMENT "direccion de la imagen",
+    descripcion_producto VARCHAR(250) NOT NULL COMMENT "Descripcion del producto",
+    CONSTRAINT tbl_producto_pk PRIMARY KEY (id_producto),
     CONSTRAINT 
-		tblCategoria_tblProducto_FK FOREIGN KEY (idCategoria) 
-			REFERENCES tbl_categoria(idCategoria) ON UPDATE CASCADE ON DELETE CASCADE
+		tbl_categoria_tbl_producto_fk FOREIGN KEY (id_categoria) 
+			REFERENCES tbl_categoria(id_categoria) ON UPDATE CASCADE ON DELETE CASCADE
 )COMMENT "Tabla de productos";
 ```
 
