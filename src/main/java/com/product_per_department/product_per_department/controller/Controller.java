@@ -70,11 +70,12 @@ public class Controller {
     public Producto getProducto(@PathVariable("id") int idProducto){
         return this.serviceProducto.getProducto(idProducto);
     }
-
-    @GetMapping("/productos/getProductoDescripcion")
-    public List<Producto> getProductoDescripcion(@RequestParam("search") String descripcion){
-        return this.serviceProducto.getProductoDescripcion(descripcion);
-    }
+    
+    // * Comentado debido a problemas con el deploy
+    // @GetMapping("/productos/getProductoDescripcion")
+    // public List<Producto> getProductoDescripcion(@RequestParam("search") String descripcion){
+    //     return this.serviceProducto.getProductoDescripcion(descripcion);
+    // }
     
     @PostMapping("/productos/addProducto")
     public void addProducto(@RequestBody Producto producto){

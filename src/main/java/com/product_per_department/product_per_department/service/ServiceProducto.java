@@ -1,6 +1,5 @@
 package com.product_per_department.product_per_department.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +19,6 @@ public class ServiceProducto {
 
     public Producto getProducto(long id){
         return this.repositoryProducto.findById(id);
-    }
-
-    public List<Producto> getProductoDescripcion(String descripcion){
-
-        return this.repositoryProducto
-            .findAll()
-            .stream()
-            .filter(producto -> producto.getDescripcionProducto().contains(descripcion))
-            .toList();
     }
 
     public void addProducto(Producto producto){
