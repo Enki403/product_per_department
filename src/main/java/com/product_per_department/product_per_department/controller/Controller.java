@@ -3,6 +3,7 @@ package com.product_per_department.product_per_department.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +28,8 @@ public class Controller {
     ServiceProducto serviceProducto;
     @Autowired
     ServiceUsuario serviceUsuario; 
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     /* Categoria */
     
@@ -109,6 +112,7 @@ public class Controller {
     
     @PostMapping("/usuarios/registrar")
     public String registrar(@RequestBody Usuario usuario){
+        usuario.setContrasenia(passwordEncoder.encode(usuario.getContrasenia()));
         this.serviceUsuario.addUsuario(usuario);
         return "login";
     }
