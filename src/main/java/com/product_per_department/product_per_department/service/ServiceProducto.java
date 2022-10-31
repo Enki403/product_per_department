@@ -1,6 +1,7 @@
 package com.product_per_department.product_per_department.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,7 @@ public class ServiceProducto {
             .findAll()
             .stream()
             .filter(producto -> producto.getDescripcion_producto().contains(descripcion))
-            .toList();
+            .collect(Collectors.toList());
     }
 
     public void addProducto(Producto producto){
