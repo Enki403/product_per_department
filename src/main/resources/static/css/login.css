@@ -1,0 +1,112 @@
+
+:root {
+    /* Colores principales */
+    --main-color: #e4002b;
+    --main-color-dark: #B9122E;
+    --main-color-darker: #B0162E;
+    --main-bg-color: #F1F1F1;
+}
+
+
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+    font-family: 'Open Sans';
+}
+
+.bg-login{
+    background-color: #e4002b;
+    background-image: linear-gradient(to bottom right, #e6002b, #dd405e);
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+.rounded2{
+    border-radius:2rem!important;
+}
+
+.login{
+    background-color: white;
+}
+
+.error {
+    color: #FF2530;
+}
+
+.w-450px{
+    width:450px;
+}
+
+.w-80{
+    width:80%;
+}
+
+.h-3{
+    height: 3rem!important;
+}
+
+h1, h2, h3, h4, h5 {
+    color: var(--main-color);
+}
+
+input[type="text"], input[type="password"] {
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    border-radius: 5px;
+}
+
+.max-width-700px{
+    max-width: 700px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #f81c46;
+    border-color: var(--main-color)
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: var(--main-color-dark);
+    border-color: var(--main-color-darker)
+}
+
+.btn-check:focus + .btn-primary, .btn-primary:focus {
+    color: #fff;
+    background-color: var(--main-color-dark);
+    border-color: var(--main-color-darker);
+    box-shadow: 0 0 0 .25rem rgba(205, 10, 28, 0.25);
+}
+
+    .btn-check:active + .btn-primary, .btn-check:checked + .btn-primary, .btn-primary.active, .btn-primary:active, .show > .btn-primary.dropdown-toggle {
+        color: #fff!important;
+        background-color: var(--main-color-darker)!important;
+        border-color: var(--main-color-darker)!important;
+    }
+
+    .btn-check:active + .btn-primary:focus, .btn-check:checked + .btn-primary:focus, .btn-primary.active:focus, .btn-primary:active:focus, .show > .btn-primary.dropdown-toggle:focus {
+        border-color: var(--main-color-darker);
+        box-shadow: 0 0 0 .25rem rgba(205, 10, 28, 0.25);
+    }
+
+
+.form-control:focus {
+    color: #000;
+    border-color: var(--main-color-darker);
+    box-shadow: 0 0 0 .25rem rgba(205, 10, 28, 0.25);
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
+    color: #fff;
+    background-color: var(--main-color);
+    border-color: var(--main-color)
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}

@@ -21,6 +21,15 @@ public class ServiceProducto {
         return this.repositoryProducto.findById(id);
     }
 
+    public List<Producto> getProductoDescripcion(String descripcion){
+
+        return this.repositoryProducto
+            .findAll()
+            .stream()
+            .filter(producto -> producto.getDescripcion_producto().contains(descripcion))
+            .toList();
+    }
+
     public void addProducto(Producto producto){
         this.repositoryProducto.save(producto);
     }

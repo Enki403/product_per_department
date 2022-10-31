@@ -8,8 +8,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 @Entity
 @Table (name = "tbl_producto")
 public class Producto {
@@ -25,53 +23,76 @@ public class Producto {
 
     @ManyToOne
     @JoinColumn(name = "id_categoria")
-    @JsonBackReference
     private Categoria categoria;
 
     public Producto(){}
 
-    public Producto(int cantidad, double precio, String nombreProducto, String descripcionProducto, String imgDir, Categoria categoria) {
+    public Producto(long id_producto, int cantidad, double precio, String nombre_producto, String descripcion_producto,
+            String img_dir, Categoria categoria) {
+        this.id_producto = id_producto;
         this.cantidad = cantidad;
         this.precio = precio;
-        this.nombre_producto = nombreProducto;
-        this.descripcion_producto = descripcionProducto;
-        this.img_dir = imgDir;
+        this.nombre_producto = nombre_producto;
+        this.descripcion_producto = descripcion_producto;
+        this.img_dir = img_dir;
         this.categoria = categoria;
     }
-    public long getIdProducto() {
+
+    public long getId_producto() {
         return id_producto;
     }
-    public void setIdProducto(long idProducto) {
-        this.id_producto = idProducto;
+
+    public void setId_producto(long id_producto) {
+        this.id_producto = id_producto;
     }
+
     public int getCantidad() {
         return cantidad;
     }
+
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
+
     public double getPrecio() {
         return precio;
     }
+
     public void setPrecio(double precio) {
         this.precio = precio;
     }
-    public String getNombreProducto() {
+
+    public String getNombre_producto() {
         return nombre_producto;
     }
-    public void setNombreProducto(String nombreProducto) {
-        this.nombre_producto = nombreProducto;
+
+    public void setNombre_producto(String nombre_producto) {
+        this.nombre_producto = nombre_producto;
     }
-    public String getDescripcionProducto() {
+
+    public String getDescripcion_producto() {
         return descripcion_producto;
     }
-    public void setDescripcionProducto(String descripcionProducto) {
-        this.descripcion_producto = descripcionProducto;
+
+    public void setDescripcion_producto(String descripcion_producto) {
+        this.descripcion_producto = descripcion_producto;
     }
-    public String getImgDir() {
+
+    public String getImg_dir() {
         return img_dir;
     }
-    public void setImgDir(String imgDir) {
-        this.img_dir = imgDir;
+
+    public void setImg_dir(String img_dir) {
+        this.img_dir = img_dir;
     }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    
 }

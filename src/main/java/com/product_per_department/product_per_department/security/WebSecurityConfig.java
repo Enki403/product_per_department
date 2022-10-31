@@ -43,11 +43,11 @@
 //         return bCryptPasswordEncoder;
 //     }
     
-//     @Autowired
-//     UserDetailsServiceImpl userDetailsService;
+//     // @Autowired
+//     // UserDetailsServiceImpl userDetailsService;
 
-//     @Autowired
-//     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception { 
-//         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());     
-//     }
+//     // @Autowired
+//     // public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception { 
+//     //     auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());     
+//     // }
 // }

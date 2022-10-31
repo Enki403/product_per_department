@@ -71,11 +71,10 @@ public class Controller {
         return this.serviceProducto.getProducto(idProducto);
     }
     
-    // * Comentado debido a problemas con el deploy
-    // @GetMapping("/productos/getProductoDescripcion")
-    // public List<Producto> getProductoDescripcion(@RequestParam("search") String descripcion){
-    //     return this.serviceProducto.getProductoDescripcion(descripcion);
-    // }
+    @GetMapping("/productos/getProductoDescripcion")
+    public List<Producto> getProductoDescripcion(@RequestParam("search") String descripcion){
+        return this.serviceProducto.getProductoDescripcion(descripcion);
+    }
     
     @PostMapping("/productos/addProducto")
     public void addProducto(@RequestBody Producto producto){
@@ -86,8 +85,13 @@ public class Controller {
     public void updateProducto(@PathVariable("id") int idProducto, @RequestBody Producto newProducto){
         
         Producto storedProducto = serviceProducto.getProducto(idProducto);
-        storedProducto.setNombreProducto(newProducto.getNombreProducto());
-        storedProducto.setDescripcionProducto(newProducto.getDescripcionProducto());
+        storedProducto.setNombre_producto(newProducto.getNombre_producto());
+        storedProducto.setDescripcion_producto(newProducto.getDescripcion_producto());
+        storedProducto.setCantidad(newProducto.getCantidad());
+        storedProducto.setPrecio(newProducto.getPrecio());
+        storedProducto.setImg_dir(newProducto.getImg_dir());
+        storedProducto.setCategoria(newProducto.getCategoria());
+
         this.serviceProducto.putProducto(storedProducto);
     }
     
@@ -95,12 +99,19 @@ public class Controller {
     public void deleteProducto(@PathVariable("id") int idProducto){
         this.serviceProducto.deleteProducto(idProducto);
     }
-
+    
     /* Usuario */
     
     @GetMapping("/usuarios/getAllUsuarios")
     public List<Usuario> getAllCUsuarios() {
         return this.serviceUsuario.getAllUsuarios();
     }
-
+    
+    @PostMapping("/usuarios/registrar")
+    public String registrar(@RequestBody Usuario usuario){
+        this.serviceUsuario.addUsuario(usuario);
+        return "login";
+    }
+    
+    
 }

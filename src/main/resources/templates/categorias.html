@@ -1,5 +1,183 @@
-categorias
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Categorias</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png" th:href="@{/img/favicon.png}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+        integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Cerrar Sesion"/>
-</form>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="static/css/styles.css" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" th:href="@{/productos}" ><i class="fa-solid fa-bag-shopping fs-1 text-danger"></i></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold active" th:href="@{/categorias}">Categorias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold" th:href="@{/productos}">Productos</a>
+                        </li>
+                    </ul>
+                    <form th:action="@{/productos}" class="d-flex me-auto w-50">
+                        <input class="form-control me-2 w-75" type="search" name="search" id="search" placeholder="Descripcion">
+                        <button class="btn btn-outline-danger" type="submit">Buscar</button>
+                    </form>
+                    <div class="text-end">
+                        <a type="button" class="btn btn-danger me-2" data-bs-toggle="modal" data-bs-target="#cerrar-sesion">Cerrar Sesión</a>
+                    </div>
+              </div>
+            </div>
+          </nav>
+    </header>
+    
+    <main class="p-5 h-100">
+        <div class="d-flex flex-wrap justify-content-between align-items-center">
+            <h1 class="">Categorias</h1>
+            <button class="d-flex align-items-center btn btn-secondary text-uppercase agregar" data-bs-toggle="modal" data-bs-target="#crear-categoria">
+                <i class="fa-solid fa-plus text-white fs-5 me-3"></i>
+                Agregar Categoria
+            </button>
+        </div>
+        <hr>
+        <div id="display-categorias" class="d-flex flex-wrap">
+            <div th:each="tmpCategoria:${categorias}" class="p-2">
+                <div class="card h-100" style="width: 18rem;">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <h5 class="card-title" th:text="${tmpCategoria.nombreCategoria}"></h5>
+                        <p class="card-text mb-auto" th:text="${tmpCategoria.descripcionCategoria}"></p>
+                        <div class="d-flex flex-wrap justify-content-between mt-3 mb-1">
+                            <a type="button" class="btn btn-secondary" th:attr="onclick=|verDetalles(${tmpCategoria.idCategoria})|">Editar</a>
+                            <a th:href="@{'/productos?categoria='+${tmpCategoria.nombreCategoria}}" class="btn btn-danger">
+                                Ver productos 
+                                <i class="fa-solid fa-angle-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </main>
+
+    <!-- Modal crear categoria -->
+    <div class="modal fade" id="crear-categoria" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Crear categoria</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="crearCategoriaForm">
+                        <div class="mb-3">
+                            <label for="nombreCategoria" class="col-form-label">Nombre:</label>
+                            <input type="text" class="form-control" id="nombreCategoria" required/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="descripcionCategoria" class="col-form-label">Descripcion:</label>
+                            <textarea class="form-control" id="descripcionCategoria" maxlength="250" required></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="registrarCategoria">Registrar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal modificar categoria -->
+    <div class="modal fade" id="modificar-categoria" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modificar categoria</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="modificarCategoriaForm">
+                        <input type="hidden" id="idCategoria"/>
+                        <div class="mb-3">
+                            <label for="nombreCategoria" class="col-form-label">Nombre:</label>
+                            <input type="text" class="form-control" id="nombreCategoria" required/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="descripcionCategoria" class="col-form-label">Descripcion:</label>
+                            <textarea class="form-control" id="descripcionCategoria" maxlength="250" required></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#eliminar-categoria">Eliminar</button>
+                    <button type="button" class="btn btn-danger" id="modificarCategoria">Modificar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal comprobar borrado -->
+    <div class="modal fade" id="eliminar-categoria" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content bg-super-light">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Esta apunto de eliminar una categoria</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ¿Está seguro que desea eliminar la categoria?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="eliminarCategoria">Eliminar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal cerrar sesion -->
+    <div class="modal fade" id="cerrar-sesion" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Esta apunto de cerrar sesión.</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ¿Está seguro que desea cerrar sesión?
+                </div>
+                <div class="modal-footer">
+                    <form th:action="@{/logout}" method="post">
+                        <button  type="submit" class="btn btn-danger">Cerrar sesión</button>
+                    </form>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    
+    <script th:src="@{/js/Categorias.js}"></script>
+
+</body>
+</html>
