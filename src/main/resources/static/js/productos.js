@@ -54,12 +54,6 @@ document.querySelector("#registrarProducto").addEventListener("click", async ()=
 
     try {
         const response = await axios.post("/productos/addProducto", data);
-        form.nombre_producto.value = "";
-        form.descripcion_producto.value = "";
-        form.cantidad.value = "";
-        form.precio.value = "";
-        form.categoria.value = "";
-        form.img_dir.value = "";
         window.location.reload()
     } catch (error) {
         if (error.response) {
@@ -90,6 +84,7 @@ const verDetalles = async (id)=>{
     formView.cantidad.value = response.data.cantidad;
     formView.categoria.value = response.data.categoria.nombreCategoria;
     formView.viewDescripcion.value = response.data.descripcion_producto;
+    document.querySelector("#viewImagen").src = response.data.img_dir;
     document.querySelector("#viewImgDir").value = response.data.img_dir;
     
     /** form modificar */
