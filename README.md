@@ -8,7 +8,7 @@
  [Contacto](mailto:vasquezlopezhectorjose@gmail.com)
 
  ### Aplicacion:
-[Probar aplicación](https://products-per-department-demo.herokuapp.com/)
+[Ir a aplicación](https://products-per-department-demo.herokuapp.com/login)
 </section>
 
 ---
@@ -99,10 +99,11 @@ CREATE TABLE IF NOT EXISTS tbl_producto(
 			REFERENCES tbl_categoria(id_categoria) ON UPDATE CASCADE ON DELETE CASCADE
 )COMMENT "Tabla de productos";
 ```
-## Deploy
-
-El deploy se realizó en heroku, alojado como: `https://products-per-department-demo.herokuapp.com/`
-
 </details>
 
+## Deploy
+
+El deploy se realizó en heroku, alojado como: `https://products-per-department-demo.herokuapp.com/login`
+
 </section>
+
