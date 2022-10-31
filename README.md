@@ -6,6 +6,9 @@
  Héctor José Vásquez López -
  0801-1999-07541 -
  [Contacto](mailto:vasquezlopezhectorjose@gmail.com)
+
+ ### Aplicacion:
+[Probar aplicación](https://products-per-department-demo.herokuapp.com/)
 </section>
 
 ---
@@ -56,7 +59,7 @@ Debe diseñar un sitio web que contenga los siguientes módulos:
 <section>
 
 ## Base de Datos
-Se utiliza MySQL como SGBD hosteado gratiuitamente en [Free MySQL Hosting](https://www.freemysqlhosting.net/) por lo que se obtiene como resultado el siguiente _ConnectionString_: `jdbc:mysql://sql10.freemysqlhosting.net:3306/sql10530136`
+Se utiliza MySQL como SGBD hosteado en google cloud por lo que se obtiene como resultado el siguiente _ConnectionString_: `jdbc:mysql://34.70.211.84:3306/db_ppd`, por favor comunicarme si la base de datos no funciona de modo que pueda revisar si los creditos que google provee se han terminado. Adicionalmente se puede utilizar un hosting gratuito como *freemysqlhosting.net* lo que tendriamos como _ConnectionString_: `jdbc:mysql://sql10.freemysqlhosting.net:3306/sql10530136`, sin embargo esta solucion es inestable y muy limitada
 
 ### DDL de la BD
 La base de datos fue definida de la siguiente forma:
@@ -96,6 +99,9 @@ CREATE TABLE IF NOT EXISTS tbl_producto(
 			REFERENCES tbl_categoria(id_categoria) ON UPDATE CASCADE ON DELETE CASCADE
 )COMMENT "Tabla de productos";
 ```
+## Deploy
+
+El deploy se realizó en heroku, alojado como: `https://products-per-department-demo.herokuapp.com/`
 
 </details>
 
