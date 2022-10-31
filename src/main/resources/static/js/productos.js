@@ -40,7 +40,7 @@ window.onload = async ()=>{
 /** Crear Producto */
 document.querySelector("#registrarProducto").addEventListener("click", async ()=>{
     var form = document.querySelector("#crearProductoForm");
-
+    if(!form.reportValidity()){return;}
     var data = {
         "nombre_producto": form.nombre_producto.value,
         "descripcion_producto": form.descripcion_producto.value,
@@ -103,7 +103,7 @@ const verDetalles = async (id)=>{
 /** Modificar producto */
 document.querySelector("#modificarProducto").addEventListener("click", async ()=>{
     var form = document.querySelector("#modificarProductoForm");
-
+    if(!form.reportValidity()){return;}
     var data = {
         "nombre_producto": form.nombre_producto.value,
         "precio": form.precio.value,

@@ -112,6 +112,14 @@ public class Controller {
         this.serviceUsuario.addUsuario(usuario);
         return "login";
     }
+
+    @PostMapping("/usuarios/login")
+    public String login(@RequestBody Usuario usuario){
+        
+        //authenticar usuario
+
+        return "login";
+    }
     
     
 }

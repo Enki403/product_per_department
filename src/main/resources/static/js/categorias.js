@@ -1,7 +1,7 @@
 /** Crear categoria */
 document.querySelector("#registrarCategoria").addEventListener("click", async ()=>{
     var form = document.querySelector("#crearCategoriaForm");
-
+    if(!form.reportValidity()){return;}
     var data = {
         "nombreCategoria": form.nombreCategoria.value,
         "descripcionCategoria": form.descripcionCategoria.value
@@ -37,7 +37,7 @@ const verDetalles = async (id)=>{
 /** Modificar categoria */
 document.querySelector("#modificarCategoria").addEventListener("click", async ()=>{
     var form = document.querySelector("#modificarCategoriaForm");
-
+    if(!form.reportValidity()){return;}
     var data = {
         "nombreCategoria": form.nombreCategoria.value,
         "descripcionCategoria": form.descripcionCategoria.value
@@ -62,7 +62,7 @@ document.querySelector("#modificarCategoria").addEventListener("click", async ()
 /** Eliminar categoria */
 document.querySelector("#eliminarCategoria").addEventListener("click", async ()=>{
     var form = document.querySelector("#modificarCategoriaForm");
-
+    if(!form.reportValidity()){return;}
     try {
         const response = await axios.delete(`/categorias/delete/${form.idCategoria.value}`);
         form.idCategoria.value = "";
