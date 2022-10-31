@@ -9,6 +9,7 @@ document.querySelector("#iniciarSesion").addEventListener("click", async ()=>{
 
     try {
         const response = await axios.post("/usuarios/login", data);
+        // Redirecciona directamente a '/'
         window.location.replace("/");   
     } catch (error) {
         if (error.response) {

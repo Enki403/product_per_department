@@ -16,6 +16,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         "/include/**","/css/**","/icons/**","/img/**","/js/**","/layer/**"
     };
 
+    // no se toma en cuenta el autenticado
+    // multiples intentos resultaron errados
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
